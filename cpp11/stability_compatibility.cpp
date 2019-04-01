@@ -1,5 +1,8 @@
 #include <iostream>
 #include <assert.h>
+#include <list>
+#include <deque>
+#include <vector>
 using namespace std;
 
 void show_func()
@@ -107,7 +110,7 @@ private:
 	std::string m_oldstr;
 };
 
-//c++11 inherit
+//c++11 inherit 继承构造函数
 
 class CNewStander :public CBase
 {
@@ -125,6 +128,36 @@ void inherit_structure()
 
 	CNewStander new_obj("new obj");
 	new_obj.show();
+}
+
+//委派构造函数,构造函数还要调用一些其他的公用初始化
+class CConstructer
+{
+private:
+	template<class T> CConstructer(T first,T last):m_list(first,last)
+	{
+		printf("default constructer copy begin\n");
+	}
+	
+	std::list<int> m_list;
+public:
+	CConstructer(std::vector<int>& d) : CConstructer(d.begin(), d.end()) {}
+	CConstructer(std::deque<int>& d) : CConstructer(d.begin(), d.end()) {}
+
+	void show()
+	{
+		cout << "list size " << m_list.size() << endl;
+	}
+};
+
+void delegation_constructer()
+{
+	std::vector<int> tmp1 = { 1,2,3 };
+	CConstructer oD1(tmp1);
+	oD1.show();
+	std::deque<int> tmp2 = { 1 };
+	CConstructer oD2(tmp2);
+	oD2.show();
 }
 
 int main()
@@ -146,5 +179,7 @@ int main()
 	cpp11_sizeof();
 
 	inherit_structure();
+
+	delegation_constructer();
 	return 0;
 }
