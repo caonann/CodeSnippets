@@ -10,19 +10,19 @@ void show_func()
 	cout << __func__ << endl;
 }
 
-//ÔËÐÐÊ±¶ÏÑÔ
+//è¿è¡Œæ—¶æ–­è¨€
 void use_nobug_example()
 {
 	assert(1 < 0);//g++ stability_compatibility.cpp -DNDEBUG will skip this
 }
 
-//±àÒëÊ±¶ÏÑÔ
+//ç¼–è¯‘æ—¶æ–­è¨€
 void assert_while_compile()
 {
 	//static_assert(1 < 0,"this get assert error");// this will compile failed
 }
 
-//¿ìËÙ³õÊ¼»¯³ÉÔ±±äÁ¿
+//å¿«é€Ÿåˆå§‹åŒ–æˆå‘˜å˜é‡
 struct {
 	int a = 0;
 	double b{ 0.23 };
@@ -67,11 +67,11 @@ void quick_init()
 //c++11 sizeof
 void cpp11_sizeof()
 {
-	cout << sizeof(CQuickInit::m_str) << endl;		//ÆÕÍ¨³ÉÔ±±äÁ¿
+	cout << sizeof(CQuickInit::m_str) << endl;		//æ™®é€šæˆå‘˜å˜é‡
 	cout << sizeof(CQuickInit::m_a) << endl;
 }
 
-//¼Ì³Ð¹¹Ôìº¯Êý
+//ç»§æ‰¿æž„é€ å‡½æ•°
 class CBase
 {
 public:
@@ -110,7 +110,7 @@ private:
 	std::string m_oldstr;
 };
 
-//c++11 inherit ¼Ì³Ð¹¹Ôìº¯Êý
+//c++11 inherit ç»§æ‰¿æž„é€ å‡½æ•°
 
 class CNewStander :public CBase
 {
@@ -130,7 +130,7 @@ void inherit_structure()
 	new_obj.show();
 }
 
-//Î¯ÅÉ¹¹Ôìº¯Êý,¹¹Ôìº¯Êý»¹Òªµ÷ÓÃÒ»Ð©ÆäËûµÄ¹«ÓÃ³õÊ¼»¯
+//å§”æ´¾æž„é€ å‡½æ•°,æž„é€ å‡½æ•°è¿˜è¦è°ƒç”¨ä¸€äº›å…¶ä»–çš„å…¬ç”¨åˆå§‹åŒ–
 class CConstructer
 {
 private:
@@ -181,5 +181,7 @@ int main()
 	inherit_structure();
 
 	delegation_constructer();
+
+
 	return 0;
 }
