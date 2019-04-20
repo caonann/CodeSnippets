@@ -5,6 +5,8 @@
 #include <vector>
 #include <map>
 #include <initializer_list>
+#include <memory>
+
 using namespace std;
 
 void show_func()
@@ -275,6 +277,81 @@ void enum_demos()
     }
 }
 
+//智能指针
+class CSmartPtrDemoObj{
+public:
+    CSmartPtrDemoObj()
+    {
+        cout<<"init "<<__func__<<endl;
+    }
+    ~CSmartPtrDemoObj()
+    {
+        cout<<"destroy "<<__func__<<endl;
+    }
+    void auto_ptr_show()
+    {
+        cout<<__func__<<endl;
+    }
+
+private:
+    int itmp1=1;
+    int itmp2=2;
+    std::string name="hulk";
+};
+
+void auto_ptr_demos()
+{
+    //unique_ptr
+    std::unique_ptr<CSmartPtrDemoObj> uptr(new CSmartPtrDemoObj());
+    uptr->auto_ptr_show();
+
+    //std::unique_ptr<CSmartPtrDemoObj> uptr2=uptr;//通不过编译，unique_ptr不支持复制
+    std::unique_ptr<CSmartPtrDemoObj> uptr2=std::move(uptr);
+    uptr2->auto_ptr_show();     //todo: ?? 理论上应该报错？
+    uptr->auto_ptr_show();
+    (*uptr).auto_ptr_show();
+
+    if(uptr.get() == nullptr)
+    {
+        cout<<"uptr.get()  is null"<<endl;
+    }
+
+    if(uptr2.get() != nullptr)
+    {
+        cout<<"uptr2.get()  is not null"<<endl;
+    }
+
+    std::shared_ptr<CSmartPtrDemoObj> sptr(new CSmartPtrDemoObj());
+    sptr->auto_ptr_show();
+
+    std::shared_ptr<CSmartPtrDemoObj> sptr2 = sptr;
+    sptr2.reset();
+
+    std::weak_ptr<CSmartPtrDemoObj> wptr=sptr2;
+    cout<<"wptr.use_count() "<<wptr.use_count()<<endl;
+
+    auto tmpfunc=[](std::weak_ptr<CSmartPtrDemoObj>& wk_ptr){
+        cout<<typeid(wk_ptr).name()<<endl;
+        cout<<"wk_ptr use_count "<<wk_ptr.use_count()<<endl;
+        if(wk_ptr.lock() == nullptr)
+        {
+            cout<<"wk_ptr.lock() == nullptr"<<endl;
+        }
+        else
+        {
+            cout<<"wk_ptr.lock() != nullptr"<<endl;
+        }
+    };
+
+    tmpfunc(wptr);
+
+    cout<<"sptr.use_count() "<<sptr.use_count()<<endl;
+    wptr = sptr;
+
+    tmpfunc(wptr);
+}
+
+
 int main()
 {
 	printf("is use c library %d \n", __STDC_HOSTED__);
@@ -305,5 +382,7 @@ int main()
     auto_for(vtmp);
 
     enum_demos();
+
+    auto_ptr_demos();
 	return 0;
 }
