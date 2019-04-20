@@ -3,6 +3,8 @@
 #include <list>
 #include <deque>
 #include <vector>
+#include <map>
+#include <initializer_list>
 using namespace std;
 
 void show_func()
@@ -13,7 +15,7 @@ void show_func()
 //运行时断言
 void use_nobug_example()
 {
-	assert(1 < 0);//g++ stability_compatibility.cpp -DNDEBUG will skip this
+	//assert(1 < 0);//g++ stability_compatibility.cpp -DNDEBUG will skip this
 }
 
 //编译时断言
@@ -160,6 +162,85 @@ void delegation_constructer()
 	oD2.show();
 }
 
+//initializer list
+class CInitialTmp{
+public:
+    CInitialTmp(std::initializer_list<int> l){
+        for (auto& iteritor:l)
+        {
+            iarr.push_back(iteritor);
+        }
+    }
+
+    CInitialTmp(std::initializer_list<std::pair<string,string>> l)
+    {
+        cout<<"initializer list size "<<l.size()<<endl;
+        for(auto& item:l)
+        {
+            cout<<"begin insert"<<endl;
+            auto ret = _inital_map.insert(item);
+            if(!ret.second) {
+                cout << "insert failed" << endl;
+            }
+        }
+
+        cout<<"init map size "<<_inital_map.size()<<endl;
+    }
+
+    void show_vecotr()
+    {
+        cout<<__func__<<" CinitialTmp show"<<endl;
+        for(auto&i:iarr)
+        {
+            printf("%d ",i);
+        }
+        cout<<endl;
+    }
+
+    void show_map()
+    {
+        cout<<__func__<<" CinitialTmp show"<<endl;
+        for(auto&i:_inital_map)
+        {
+            printf("key %s,val %s",i.first.c_str(),i.second.c_str());
+        }
+        cout<<endl;
+    }
+
+private:
+    std::vector<int> iarr;
+    std::map<string,string> _inital_map;
+};
+void initizlizer_list_demo()
+{
+   std::vector<int> vectmp={1,2,3,4};
+   std::map<std::string,int> omap={{"tmp1",123},{"tmp2",456}};
+   for(auto& v:vectmp)
+   {
+       printf("initizlizer list %d ",v);
+   }
+   cout<<endl;
+   for(auto& v:omap)
+   {
+       printf("key %s val %d\n",v.first.c_str(),v.second);
+   }
+   cout<<endl;
+
+    //use initialize list
+    CInitialTmp oInitTmp{1,2,3,4,5};
+    oInitTmp.show_vecotr();
+    CInitialTmp oInitTmpMap{{"mapkey1","mapval1"},{"mapkey2","mapval2"}};
+    oInitTmpMap.show_map();
+}
+
+//auto decltype
+void auto_decltype_demo()
+{
+    int i;
+    decltype(i) j=0;
+    cout<<__func__<<" "<<typeid(j).name()<<endl;
+}
+
 int main()
 {
 	printf("is use c library %d \n", __STDC_HOSTED__);
@@ -182,6 +263,8 @@ int main()
 
 	delegation_constructer();
 
+    initizlizer_list_demo();
 
+    auto_decltype_demo();
 	return 0;
 }
