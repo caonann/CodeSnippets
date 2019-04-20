@@ -80,7 +80,7 @@ public:
 	CBase(int a):m_a(a){}
 	CBase(const std::string& defaultstr):m_str(defaultstr){}
 	CBase(){}
-	void show()
+	virtual void show()
 	{
 		cout << "int " << m_a << endl;
 		cout << "string " << m_str << endl;
@@ -241,6 +241,40 @@ void auto_decltype_demo()
     cout<<__func__<<" "<<typeid(j).name()<<endl;
 }
 
+//基于范围的for循环
+void auto_for(const std::vector<int>& v)
+{
+    std::vector<int> tmpv{4,5,6,7,8};
+    for(auto i:tmpv)
+    {
+        printf("autofor %d\n",i);
+    }
+
+    for(auto i:v)
+    {
+        printf("auto func parm for %d\n",i);
+    }
+}
+
+//强类型枚举
+void enum_demos()
+{
+    enum class Type:char{Man,Women};
+    Type t = Type ::Man;
+    //强枚举类型需要显示强制转换才能对比
+    if(1 > static_cast<int>(t))
+    {
+        cout<<"Type ::Man"<<endl;
+    }
+
+    //匿名的enum 强制类型没有意义
+    enum {fisrt,second,third};
+    if(second == 1)
+    {
+        cout<<"second == 1"<<endl;
+    }
+}
+
 int main()
 {
 	printf("is use c library %d \n", __STDC_HOSTED__);
@@ -266,5 +300,10 @@ int main()
     initizlizer_list_demo();
 
     auto_decltype_demo();
+
+    std::vector<int> vtmp={6,7,8,9};
+    auto_for(vtmp);
+
+    enum_demos();
 	return 0;
 }
