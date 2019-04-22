@@ -6,6 +6,9 @@
 #include <map>
 #include <initializer_list>
 #include <memory>
+#include <assert.h>
+#include <string.h>
+#include <type_traits>
 
 using namespace std;
 
@@ -352,6 +355,164 @@ void auto_ptr_demos()
 }
 
 
+//右值引用
+//传统的拷贝构造，使用了临时的值
+struct CNode
+{
+    CNode(int a=0)
+    {
+        node_num = a;
+    }
+    char name[1024] = "local node";
+    int  node_num   = 0;
+};
+
+class CtmpCopySimple
+{
+public:
+    CtmpCopySimple(std::initializer_list<CNode> l):m_pbuff(nullptr)
+    {
+        cout<<__func__<<" init "<<m_iconstract++<<endl;
+        m_pbuff = new CNode[buff_size];
+        assert(m_pbuff);
+        for(auto& v: l)
+        {
+            if(m_copoy_index>=buff_size)
+            {
+                assert(false);
+            }
+            m_pbuff[m_copoy_index++]=v;
+        }
+    }
+
+    //普通拷贝构造 deep copy
+    CtmpCopySimple(const CtmpCopySimple& tmp)
+    {
+        cout<<"copy init"<<m_icopyinit++<<endl;
+        m_pbuff = new CNode[buff_size];
+        assert(m_pbuff);
+        memset(m_pbuff,0,buff_size*sizeof(CNode));
+        memcpy(m_pbuff,tmp.m_pbuff,buff_size*sizeof(CNode));
+        m_copoy_index = tmp.m_copoy_index;
+    }
+
+    //右值引用 节省拷贝次数
+    CtmpCopySimple(CtmpCopySimple && tmp) noexcept
+    {
+        cout<<"move construct "<<m_imoveconstruct++<<endl;
+        m_pbuff = tmp.m_pbuff;
+        tmp.m_pbuff= nullptr;
+        m_copoy_index = tmp.m_copoy_index;
+
+    }
+
+    bool PushNode(const CNode& node)
+    {
+        if(m_copoy_index >= buff_size)
+        {
+            cout<<"push node size more than large"<<endl;
+            return false;
+        }
+
+        m_pbuff[m_copoy_index++] = node;
+        return true;
+    }
+    void show_node()
+    {
+        cout<<__func__<<" begin"<<endl;
+        for(int i=0;i<m_copoy_index;i++)
+        {
+            CNode& node = m_pbuff[i];
+            cout<<"node num: "<<node.node_num<<endl;
+        }
+        cout<<__func__<<" end"<<endl;
+    }
+
+    static void clear()
+    {
+        m_iconstract = 0;
+        m_idestruct  = 0;
+        m_icopyinit  = 0;
+        cout<<"m_iconstract "<<m_iconstract<<endl;
+    }
+    ~CtmpCopySimple()
+    {
+        cout<<__func__<< " destroy "<<m_idestruct++<<endl;
+        if(m_pbuff != nullptr)
+        {
+            delete[] m_pbuff;
+            m_pbuff = nullptr;
+        }
+    }
+private:
+    static int m_iconstract;//构造次数
+    static int m_idestruct;//析构次数
+    static int m_icopyinit;//拷贝构造次数
+    static int m_imoveconstruct;//移动构造次数
+private:
+    int        m_copoy_index=0;
+    const int  buff_size = 32;
+    CNode*     m_pbuff;
+};
+
+int CtmpCopySimple::m_iconstract=0;
+int CtmpCopySimple::m_idestruct=0;
+int CtmpCopySimple::m_icopyinit=0;
+int CtmpCopySimple::m_imoveconstruct=0;
+
+void copy_constract_demos()
+{
+    CtmpCopySimple a{{CNode(1)},{CNode(2)}};
+    a.show_node();
+    CtmpCopySimple b(a);
+    b.show_node();
+
+    CtmpCopySimple::clear();
+}
+
+CtmpCopySimple get_tmp_obj()
+{
+    return CtmpCopySimple({CNode(9)});
+}
+
+void copy_constract_demos2()
+{
+    cout<<__func__<<endl;
+    CtmpCopySimple tmp = get_tmp_obj();
+    //CtmpCopySimple tmp2 = tmp;
+    //CtmpCopySimple tmp3 = tmp2;
+    tmp.show_node();
+}
+
+
+CtmpCopySimple return_tmp_value(int a,int b)
+{
+    return  CtmpCopySimple{ CNode(a),CNode(b)};
+}
+void copy_move_construct_demos3()
+{
+    cout<<__func__<<" begin"<<endl;
+    //使用右值引用，被引用的临时变量的生命周期就与ret相同了
+    CtmpCopySimple && ret = return_tmp_value(2,3);
+    ret.show_node();
+    ret.PushNode(CNode(88));
+    ret.show_node();
+
+    //c++98 常量引用左值也有此效果，但是引用后的值只读
+    // CtmpCopySimple& ret2 = return_tmp_value(4,5);  非const T &引用右值编译不会通过
+    const CtmpCopySimple& ret2 = return_tmp_value(4,5);
+    //ret2.show_node();     编译不过
+
+    CtmpCopySimple ret3 = return_tmp_value(6,7);
+    ret3.show_node();
+}
+
+void copy_move_construct_dmoes4()
+{
+    auto val = std::is_rvalue_reference<CtmpCopySimple &&>::value;
+    cout<<"is rval "<<val<<endl;
+}
+
 int main()
 {
 	printf("is use c library %d \n", __STDC_HOSTED__);
@@ -384,5 +545,13 @@ int main()
     enum_demos();
 
     auto_ptr_demos();
+
+    copy_constract_demos();
+
+    copy_constract_demos2();
+
+    copy_move_construct_demos3();
+
+    copy_move_construct_dmoes4();
 	return 0;
 }
