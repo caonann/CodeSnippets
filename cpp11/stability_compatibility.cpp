@@ -511,6 +511,93 @@ void copy_move_construct_dmoes4()
 {
     auto val = std::is_rvalue_reference<CtmpCopySimple &&>::value;
     cout<<"is rval "<<val<<endl;
+
+    auto is_moveable = std::is_move_constructible<CtmpCopySimple>::value;
+    cout<<"is_moaveabe "<<is_moveable;
+}
+
+//完美转发,作为包装函数很方便
+template <typename T,typename U>
+void perfect_forward(T && val,const U& Func)
+{
+    cout<<" forwarded..."<<endl;
+    Func(forward<T>(val));
+}
+
+void use_perfect_forward() {
+    auto runcode1 = [](int a) -> int {
+        cout << "runcode1 " << a << endl;
+        return a + 1;
+    };
+
+    auto runcode2 = [](CtmpCopySimple&& a) -> void {
+        cout<<"CtmpCopySimple runcode2 move"<<endl;
+        CtmpCopySimple tmpNode(a);
+        tmpNode.show_node();
+    };
+
+    auto runcode3 = [](CtmpCopySimple a) -> void {
+        cout<<"CtmpCopySimple runcode3 move"<<endl;
+        CtmpCopySimple tmpNode(a);
+        tmpNode.show_node();
+    };
+
+    perfect_forward(5, runcode1);
+    perfect_forward(CtmpCopySimple{CNode(111), CNode(222)}, runcode2);
+    perfect_forward(CtmpCopySimple{CNode(333), CNode(444)}, runcode3);
+}
+
+//pod 类型
+struct trivial1{};
+struct trivial2{
+public:
+    int a;
+private:
+    int b;
+};
+
+struct trivial3{
+    trivial1 tri1;
+    trivial2 tri2;
+};
+
+struct trivial4{
+    trivial2 tri_arr[4];
+};
+struct trivial5{
+    int a;
+    static int b;
+};
+
+struct notrivial1{
+    notrivial1():a(4){}
+    int a;
+};
+
+struct notrivial2{
+    notrivial2(){}
+    int b;
+};
+
+struct notrivial3{
+    trivial2 trival;
+    virtual void f()=0;
+};
+
+void pod_type_demos()
+{
+    //平凡的布局
+    cout<<std::is_trivial<trivial1>::value<<endl;
+    cout<<std::is_trivial<trivial2>::value<<endl;
+    cout<<std::is_trivial<trivial3>::value<<endl;
+    cout<<std::is_trivial<trivial4>::value<<endl;
+    cout<<std::is_trivial<trivial5>::value<<endl;
+    cout<<std::is_trivial<notrivial1>::value<<endl;
+    cout<<std::is_trivial<notrivial2>::value<<endl;
+    cout<<std::is_trivial<notrivial3>::value<<endl;
+
+    //标准布局
+    
 }
 
 int main()
@@ -553,5 +640,9 @@ int main()
     copy_move_construct_demos3();
 
     copy_move_construct_dmoes4();
+
+    use_perfect_forward();
+
+    pod_type_demos();
 	return 0;
 }
