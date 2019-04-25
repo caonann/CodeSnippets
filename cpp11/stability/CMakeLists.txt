@@ -1,0 +1,1 @@
+add_executable(stability_demo stability_compatibility.cpp)

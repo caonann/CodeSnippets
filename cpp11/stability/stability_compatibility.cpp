@@ -597,7 +597,25 @@ void pod_type_demos()
     cout<<std::is_trivial<notrivial3>::value<<endl;
 
     //标准布局
-    
+
+}
+
+
+//using 代替typedef,在模板上更有优势
+typedef unsigned int UINT;
+using UINTTYPE = unsigned int;
+template <typename T> using MAPTYPE=std::map<T,std::string>;
+
+void using_typedef_demos()
+{
+    cout<<__func__<<" issame"<<std::is_same<UINT ,UINTTYPE >::value<<endl;
+    MAPTYPE<int> omap;
+    omap[5]="hulk";
+    omap[6]="hulk666";
+    for(auto&v:omap)
+    {
+        cout<<"key "<<v.first<<" val "<<v.second<<endl;
+    }
 }
 
 int main()
@@ -644,5 +662,7 @@ int main()
     use_perfect_forward();
 
     pod_type_demos();
+
+    using_typedef_demos();
 	return 0;
 }
