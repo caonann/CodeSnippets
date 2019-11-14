@@ -145,7 +145,7 @@ private:
 	{
 		printf("default constructer copy begin\n");
 	}
-	
+
 	std::list<int> m_list;
 public:
 	CConstructer(std::vector<int>& d) : CConstructer(d.begin(), d.end()) {}
@@ -625,10 +625,10 @@ int main()
 	show_func();
 
 	cout << "cpluspluse version " << __cplusplus << endl;
-#if __cplusplus < 201103L 
-	#error "should use C++ 11 implementation" 
+#if __cplusplus < 201103L
+	#error "should use C++ 11 implementation"
 #endif
-	
+
 	use_nobug_example(); // run will get errror
 	print_struct();
 
