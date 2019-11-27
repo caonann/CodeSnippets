@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import pdb
 
 print("hello world")
 
@@ -14,23 +13,13 @@ def test_kwargs(**kwargs):
     for key,value in kwargs.items():
         print("{0} and {1}".format(key,value))
 
+def test_args_and_kwargs(*args,**kwargs):
+    for arg in args:
+        print("test arg",arg)
+    for key,value in kwargs.items():
+        print("test {0} and {1}".format(key,value))
+
 test_args("a","b","c",1,2,3)
 test_kwargs(name='hulk',age=3)
+test_args_and_kwargs(1,2,3,4,name="123",keyword="this key")
 
-#Generators 生成器
-def generator_functions():
-    for i in range(10):
-        yield i
-
-for item in generator_functions():
-    print(item)
-
-def fibon(n):
-    a=b=1
-    for i in range(n):
-        yield a
-        a,b=b,a+b
-
-fibo_ret = fibon(100)
-for item in fibo_ret:
-    print(item)
