@@ -1,4 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
-project(cpp11_demo C CXX)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-elide-constructors")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+cmake_minimum_required(VERSION 3.0.0)
+project(hulk VERSION 0.1.0)
+
+include(CTest)
+enable_testing()
+
+add_library(stability_compatibility stability_compatibility.cpp)
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
