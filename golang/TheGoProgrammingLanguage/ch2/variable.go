@@ -8,12 +8,24 @@ var c string = "efg"
 var e, f, g int
 var h, i, j = true, "hijk", 1.35
 
+//复杂初始化
+var pc [256]byte = func() (pc [256]byte) {
+	for i := range pc {
+		pc[i] = pc[i]/2 + byte(i&1)
+	}
+	return
+}()
+
 func fib(n int) uint64 {
 	var x, y uint64 = 0, 1
 	for i := 0; i < n; i++ {
 		x, y = y, x+y
 	}
 	return x
+}
+
+func init() {
+	fmt.Printf("%v", "init\n")
 }
 
 func main() {
@@ -25,4 +37,5 @@ func main() {
 	fmt.Printf("%s %d %s %s\n", aa, bb, cc, ccd)
 	fmt.Println(fib(10000))
 	fmt.Println(string_arr)
+	fmt.Println(fib)
 }
