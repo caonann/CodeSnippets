@@ -6,3 +6,4 @@ package-lock.json
 py3env
 a.out
 build
+*.exe
