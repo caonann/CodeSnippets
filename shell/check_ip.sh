@@ -17,12 +17,32 @@ function check_ip() {
     if echo $IP|grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null; then
         if [ ${VALID_CHECK:-no} == "yes" ]; then
             echo "IP $IP available."
+            return 0
         else
             echo "IP $IP not available!"
+            return 1
         fi
     else
         echo "IP format error!"
+        return 2
     fi
+}
+
+function valid_ip()
+{
+    local  ip=$1
+    local  stat=1
+
+    if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        OIFS=$IFS
+        IFS='.'
+        ip=($ip)
+        IFS=$OIFS
+        [[ ${ip[0]} -le 255 && ${ip[1]} -le 255 \
+            && ${ip[2]} -le 255 && ${ip[3]} -le 255 ]]
+        stat=$?
+    fi
+    return $stat
 }
 
 function parse_int_from_ip()
@@ -56,7 +76,9 @@ function parse_cidr_prefix_from_netmask()
 
 # Example
 check_ip 192.168.1.1
+echo $?
 check_ip 256.1.1.1
+echo $?
 
 parse_cidr_prefix_from_netmask 255.255.255.240
 parse_int_from_ip 192.168.13.12
