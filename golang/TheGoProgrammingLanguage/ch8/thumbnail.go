@@ -11,5 +11,6 @@ func main() {
 func makeThumbnails(filenames []string) {
 	for _, f := range filenames {
 		fmt.Printf("filename:%v\n", f)
+
 	}
 }
