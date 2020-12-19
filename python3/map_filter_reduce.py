@@ -25,5 +25,3 @@ function参数是一个有两个参数的函数，reduce依次从sequence中取�
 
 list_ret = reduce(lambda x,y:x+y,range(-5,5),1)
 print(list_ret)
-
-
