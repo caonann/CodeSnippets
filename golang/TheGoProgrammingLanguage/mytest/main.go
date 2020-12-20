@@ -19,6 +19,7 @@ func runVariableFuns() {
 
 func runArrs() {
 	arrary.TestArr()
+	arrary.TestSlice()
 }
 func main() {
 	flag.Parse()
