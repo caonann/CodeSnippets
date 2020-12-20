@@ -7,3 +7,4 @@ py3env
 a.out
 build
 *.exe
+pkg

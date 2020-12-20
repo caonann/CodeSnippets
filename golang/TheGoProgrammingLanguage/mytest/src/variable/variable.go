@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	fmt.Println("init variable")
+	fmt.Println("#####init variable############")
 }
 
 //TestVariable ...
@@ -42,4 +42,15 @@ func TestInt() {
 	fmt.Printf("%T %[1]v\n", pi)
 	fmt.Printf("%T %[1]v\n", pia)
 	fmt.Println(math.Pi)
+}
+
+func TestString() {
+	s := "this is a string"
+	fmt.Printf("TestString %s %s %d\n", s[4:10], s[:4], len(s))
+}
+
+func TestPtr() {
+	t := []int{1, 2, 3, 4}
+	pt := &t
+	fmt.Printf("pt len %v", len(*pt))
 }
