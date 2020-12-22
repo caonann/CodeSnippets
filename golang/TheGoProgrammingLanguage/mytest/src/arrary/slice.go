@@ -46,6 +46,15 @@ func TestSlice() {
 	arr3 = appendInt(arr3, 2)
 	arr3 = appendInt(arr3, 3)
 	fmt.Println("appendInt ", arr3)
+
+	var runes []rune
+	for _, r := range "hello hulk" {
+		runes = append(runes, r)
+	}
+
+	runes = append(runes, 'a', 'b')
+	fmt.Printf("%q", runes)
+
 }
 
 func reserve(s []int) {
