@@ -19,8 +19,10 @@ func runVariableFuns() {
 
 func runArrs() {
 	arrary.TestArr()
-	arrary.TestSlice()
 	arrary.TestMap()
+	arrary.TestSlice2()
+	arrary.TestSlice()
+	arrary.TestStruct()
 }
 
 func main() {

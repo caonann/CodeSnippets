@@ -46,7 +46,7 @@ func TestInt() {
 
 func TestString() {
 	s := "this is a string"
-	fmt.Printf("TestString %s %s %d\n", s[4:10], s[:4], len(s))
+	fmt.Printf("TestString %s %s %v %d\n", s[4:10], s[:4], s[:0], len(s))
 }
 
 func TestPtr() {

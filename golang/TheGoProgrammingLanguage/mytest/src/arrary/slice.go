@@ -6,7 +6,7 @@ import (
 )
 
 func TestSlice() {
-	weeks := []string{1: "mon", "tus", "wed", "thu", "fri", "sat", "sun"}
+	weeks := [...]string{1: "mon", "tus", "wed", "thu", "fri", "sat", "sun"}
 	fmt.Println(weeks[1:3])
 	tmp1 := weeks[1:5]
 	tmp2 := weeks[2:4]
@@ -53,8 +53,111 @@ func TestSlice() {
 	}
 
 	runes = append(runes, 'a', 'b')
-	fmt.Printf("%q", runes)
+	fmt.Println(runes)
 
+	strings := []string{"hulk", "", "haha"}
+	ret := func(strings []string) []string {
+		out := strings[:0] // zero-length slice of original
+		for _, s := range strings {
+			if s != "" {
+				out = append(out, s)
+			}
+		}
+		return out
+	}(strings)
+	fmt.Println("slice ret is ", ret)
+	fmt.Println("strings is ", strings)
+	func(strings []string) {
+		strings = append(strings, "test1", "test2")
+	}(strings[:0]) //指针重置为0，不会触发重新分配内存,所以不会有问题
+	fmt.Println("strings2 is ", strings)
+	//这两种实际上是一种类型，相当于把指针重置了
+	fmt.Printf("%T,%T\n", strings, strings[:0])
+}
+
+func TestSlice2() {
+	//https://medium.com/swlh/golang-tips-why-pointers-to-slices-are-useful-and-how-ignoring-them-can-lead-to-tricky-bugs-cac90f72e77b
+	fmt.Println("TEST CASE 1")
+	slice := []string{"a", "a"}
+	func(slice []string) {
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 2")
+	slice = []string{"a", "a"}
+	func(slice *[]string) {
+		(*slice)[0] = "b"
+		(*slice)[1] = "b"
+		fmt.Println(*slice)
+	}(&slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 3")
+	slice = []string{"a", "a"}
+
+	func(slice []string) {
+		slice = append(slice, "a")
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 4")
+	slice = []string{"a", "a"}
+
+	func(slice []string) {
+		slice[0] = "b"
+		slice[1] = "b"
+		slice = append(slice, "a")
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 5")
+	slice = make([]string, 2, 3)
+	func(slice []string) {
+		slice = append(slice, "a")
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 6")
+	slice = make([]string, 2, 3)
+	func(slice []string) {
+		slice = append(slice, "a")
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 7")
+	slice = make([]string, 2, 3)
+	func(slice []string) {
+		slice = append(slice, "a", "b")
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(slice)
+
+	fmt.Println("TEST CASE 8")
+	slice = make([]string, 1, 3)
+	func(slice []string) {
+		slice = slice[1:3]
+		slice[0] = "b"
+		slice[1] = "b"
+		fmt.Println(len(slice))
+		fmt.Println(slice)
+	}(slice)
+	fmt.Println(len(slice))
+	fmt.Println(slice)
 }
 
 func reserve(s []int) {
