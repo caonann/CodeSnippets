@@ -4,6 +4,7 @@ import (
 	"arrary"
 	"flag"
 	"fmt"
+	"function"
 	"variable"
 )
 
@@ -25,10 +26,15 @@ func runArrs() {
 	arrary.TestStruct()
 }
 
+func runFunctions() {
+	ret := function.Fibonacci(5)
+	fmt.Printf("fibonacci %v iter %v", ret, function.IterationTimes)
+}
 func main() {
 	flag.Parse()
 
 	fmt.Println("hello")
 	runVariableFuns()
 	runArrs()
+	runFunctions()
 }
