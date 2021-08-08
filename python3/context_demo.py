@@ -1,36 +1,30 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
-import context
+import os
+import sys
+import time
+import json
 
-class Context(object):
-    """
-        请求级别级别上下文
-        协议要求：
-            * 实现 memorize 装饰器
-            * 实现 in 操作符
-            * get 方法
-            * 动态获取设置属性
-            * 重载 [] 运算符，支持获取与设置
-    """
+class Context():
+    def __getattr__(self,name):
+        return self.__dict__[name]
+    def __setattr__(self,name,value):
+        self.__dict__[name] = value
+    def get(self,name,default=None):
+        try:
+            return self.__getattr__(name)
+        except KeyError:
+            return default
+    def __str__(self):
+        return str(self.__dict__)
+    def __contain__(self,name):
+        return name in self.__dict__.keys()
 
-    def memorize(self, function):
-        def __memorize(*args, **kwargs):
-            import context
-            from copy import deepcopy
-            cache = context.cache
-            key = compute_key(function, args, kwargs)
-            if key in cache:
-                return deepcopy(cache[key])
+sys.modules['context'] = Context()
+sys.modules['common.context'] = Context()
 
-            result = function(*args, **kwargs)
-            cache[key] = result
-            return deepcopy(result)
 
-        return __memorize
-
-def test_fun():
-    data={"key1":"123","key2":"456","key3":"567"}
-    return data
-
-test = Context.memorize(test_fun)
-print("test",test())
+#print(sys.modules)
+c=Context()
+c.testKey="test a"
+print(c.testKey)

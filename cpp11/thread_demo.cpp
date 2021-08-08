@@ -15,15 +15,21 @@
 #include <type_traits>
 #include <thread>
 #include <atomic>
+#include <unistd.h>
+#include <pthread.h>
+
 using namespace std;
 
 atomic_llong total{0};
+long long total2{0};
 
 void func_total(int)
 {
     for (int64_t i = 0; i < 100000000LL; i++)
     {
         total++;
+        total2++;
+        //usleep(1);
     }
 }
 
@@ -41,6 +47,8 @@ void test_thread_demo1()
     t1.join();
     t2.join();
     cout<<"total is "<<total<<endl;
+    cout<<"total2 is "<<total2<<endl;
+    //pthread_create();
 }
 
 int main()

@@ -14,3 +14,7 @@ print(setA.intersection(setB))
 
 # 求差集
 print(setA.difference(setB))
+
+
+setSort = set([4,2,1,5,8])
+print(setSort)
