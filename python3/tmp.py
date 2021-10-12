@@ -14,3 +14,6 @@ tmpmap.setdefault("def", {}).setdefault("abc",[]).append("abc")
 tmpmap.setdefault("def", {}).setdefault("abc",[]).append("abc")
 print(tmpmap)
 print(tmpmap["def"]["abc"][2:])
+
+if " ":
+    print("yes")

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # coding=utf-8
+import json
 import os
 import sys
 import time
-import json
+
 
 class Context():
     def __getattr__(self,name):

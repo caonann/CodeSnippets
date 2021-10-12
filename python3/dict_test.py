@@ -16,3 +16,9 @@ conf=[{
 '''数组转换为dict'''
 tmpmap=[(_['id'],_['key']) for _ in conf]
 print(tmpmap,dict(tmpmap),dict(tmpmap).get(123,False))
+
+# 合并两个dict
+dict_a={"a":123,"b":456}
+dict_b={"b":567,"c":789}
+dict_merge={**dict_a,**dict_b}
+print(dict_merge)
