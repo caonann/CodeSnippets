@@ -22,3 +22,7 @@ dict_a={"a":123,"b":456}
 dict_b={"b":567,"c":789}
 dict_merge={**dict_a,**dict_b}
 print(dict_merge)
+
+ret = dict_merge.update({"update":"test"})
+print(dict_merge)
+print(ret)
