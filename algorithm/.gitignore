@@ -1,0 +1,11 @@
+
+*.ipch
+*.db
+.vs/
+*.json
+*.sqlite
+*.xml
+a.out
+.vscode
+build
+__pycache__
