@@ -1,12 +1,3 @@
-/*
- @copyright  2004-2015  Apache License, Version 2.0
- @filename   HasSubtree.cpp
- @author     caonan
- @version
- @date       2019/10/03 16:07
- @brief
- @details    2019/10/03 root create
-*/
 /*************************************************************************
     > File Name: HasSubtree.cpp
     > Author: hulkcao

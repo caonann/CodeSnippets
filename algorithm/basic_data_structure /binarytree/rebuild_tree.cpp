@@ -58,7 +58,7 @@ TreeNode *ConstructTree(vector<int> &pre, vector<int> &vin, int ipre_b, int ipre
     int right_len = ivin_e - ivin_b - left_len;
 
     // return NULL;
-    // 左子节点
+
     if (left_len > 0)
     {
         root->left = ConstructTree(pre, vin,
@@ -68,7 +68,6 @@ TreeNode *ConstructTree(vector<int> &pre, vector<int> &vin, int ipre_b, int ipre
                                    ivin_b + left_len - 1);
     }
 
-    // 右子节点
     if (right_len > 0)
     {
         root->right = ConstructTree(pre, vin,
