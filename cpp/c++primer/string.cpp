@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    char *id = "";
-    printf("id is %s\n",id);
+    string s;
+    cout<<s[1];
     return 0;
 }

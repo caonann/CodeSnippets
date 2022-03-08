@@ -1,8 +1,9 @@
 #!/bin/bash
 set -x
-containerid=`docker container ls -a -f "name=cppuint" -q`
+name=cppuint
+containerid=`docker container ls -a -f "name=${name}" -q`
 if [ -z ${containerid} ];then
-    docker run -it --name cppuint --rm --mount type=bind,source=$(pwd),target=/app cppuint
+    docker run -it --name ${name} --rm --mount type=bind,source=$(pwd),target=/app ${name}
 else
     docker exec -it ${containerid} /bin/bash
 fi
