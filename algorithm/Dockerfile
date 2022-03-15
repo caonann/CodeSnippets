@@ -11,4 +11,4 @@ RUN apt-get clean all && apt-get update && \
     rm -rf /var/lib/apt/lists/* &&\
     rm -rf /var/cache/apt/archives/*
     
-WORKDIR /app
+WORKDIR /appw

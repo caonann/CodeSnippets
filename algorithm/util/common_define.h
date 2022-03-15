@@ -20,8 +20,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
-#include <gtest/gtest.h>
-using namespace std;
 
 struct TreeNode
 {
@@ -63,10 +61,10 @@ void printItemList(T &itemlist)
 {
     for (auto &v : itemlist)
     {
-        cout << v << " ";
+        std::cout << v << " ";
     }
 
-    cout << endl;
+    printf("\n");
 }
 
 }

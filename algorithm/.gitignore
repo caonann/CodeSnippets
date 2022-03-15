@@ -9,3 +9,4 @@ a.out
 .vscode
 build
 __pycache__
+core*

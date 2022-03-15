@@ -22,3 +22,7 @@
 shared_ptr 避免循环引用：
 
 owner持有只想child的shared_ptr,child持有指向owner的weak_ptr
+
+# todo
+[ ] 实现一个线程池
+[ ] 多线程间的同步
