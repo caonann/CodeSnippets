@@ -1,4 +1,6 @@
-//整数除法:https://leetcode-cn.com/problems/xoh6Oh/
+//链接：整数除法:https://leetcode-cn.com/problems/xoh6Oh/
+//来源：剑指offer专项进阶01
+
 #include <iostream>
 #include <assert.h>
 #include <stdlib.h>
