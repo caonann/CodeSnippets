@@ -53,6 +53,13 @@ int main(){{
 def generate_python_file(filename):
     return f'''#!/usr/bin/python
 # coding: utf-8
+#filename   {filename}
+#author     caonan
+#date       {time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
+#reference 
+#url
+#brief
+
 if __name__ == "__main__":
     pass
 '''
