@@ -31,7 +31,13 @@ public:
     int a;
     char b;
     int c;
+    static const int d{0};//静态常量成员可以类内初始化
+    static constexpr int e{0};
+    static int f;
 };
+
+int C::f = 0;//静态成员变量的定义需要在类外定义，为了保证编译时类成员的定义只存在于一个目标文件中
+
 int main(){
     /*
     关闭ALSR，随机内存排布，方便观察内存排布
@@ -100,5 +106,10 @@ int main(){
     bitset<5> b2{"11111"};
     auto b3 = b1&b2;
     cout<<"b3 is "<<b3<<endl;
+
+    //c++11可以对非静态成员变量直接做sizeof，在c++98编译无法通过
+    cout<<"C::a size is "<<sizeof(C::a)<<endl;
+    cout<<"c::d size is "<<sizeof(C::d)<<endl;
+    cout<<"c::f size is "<<sizeof(C::f)<<endl;
     return 0;
 }
