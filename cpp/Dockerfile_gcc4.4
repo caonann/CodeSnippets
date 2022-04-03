@@ -1,7 +1,4 @@
-ARG UBUNTU_VERSION=20
-FROM ubuntu:${UBUNTU_VERSION}.04
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
-COPY ./.sources.list.ubuntu20.04 /etc/apt/sources.list
+FROM ubuntu:12.04
 
 RUN apt-get clean all && apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
