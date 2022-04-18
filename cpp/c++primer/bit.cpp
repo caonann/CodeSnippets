@@ -106,10 +106,12 @@ int main(){
     bitset<5> b2{"11111"};
     auto b3 = b1&b2;
     cout<<"b3 is "<<b3<<endl;
-
+    bitset<1> b4{1};
+    //auto x = b4&b1; bitset只能针对长度相同的做运算符操作
     //c++11可以对非静态成员变量直接做sizeof，在c++98编译无法通过
     cout<<"C::a size is "<<sizeof(C::a)<<endl;
     cout<<"c::d size is "<<sizeof(C::d)<<endl;
     cout<<"c::f size is "<<sizeof(C::f)<<endl;
+
     return 0;
 }
