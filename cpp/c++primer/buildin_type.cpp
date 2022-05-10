@@ -19,7 +19,7 @@ class B : public A
 {
     virtual int getSomeNumber() override { return 0; }
     int b;
-    //int c;
+    // int c;
 };
 
 int main()
@@ -42,5 +42,8 @@ int main()
     printf("size of class B %d\n", sizeof(B));
     int *p = nullptr;
     printf("size of pointer is %d\n", sizeof(p));
+
+    int mod = 0 % 2;
+    cout << "mod is " << mod << endl;
     return 0;
 }
