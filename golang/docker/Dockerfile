@@ -17,6 +17,7 @@ RUN apt-get clean all && apt-get update && \
 
 RUN rm -rf /usr/local/go && tar -C /usr/local -xzf /root/${GO_PACKAGE}
 RUN echo "export PATH=\$PATH:/usr/local/go/bin" >> $HOME/.bashrc
+RUN echo "export GOPATH=/root/go:/app" >> $HOME/.bashrc
 RUN rm /root/${GO_PACKAGE}
 
 WORKDIR /app
