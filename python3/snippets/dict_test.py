@@ -47,3 +47,24 @@ print(tmpmap["def"]["abc"][2:])
 
 if " ":
     print("yes")
+
+test_dict ={
+    'a':"aaaa",
+    'b':'bbbb',
+    'c':'cccc'
+}
+
+for key,val in test_dict.items():
+    if val == 'bbbb':
+        test_dict[key]='kkkk'
+    
+print(test_dict)
+
+a = {}
+if "abc" in a:
+    print('aaa')
+
+_ = ','.join(["ababab",'kkkk'])
+print(_)
+_ = ','.join([])
+print(_)

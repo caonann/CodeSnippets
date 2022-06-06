@@ -16,3 +16,19 @@ print(f"{num_value % 2 = }")
 today = datetime.date.today()  
 print(f"{today: %Y%m%d}")  
 print(f"{today =: %Y%m%d}")  
+
+# 判断字符串是否全是英文
+"asdf123".encode('UTF-8').isalpha()
+print('c'.startswith('_'))
+
+
+def remove_number_from_str(str_name):
+    return ''.join([i for i in str_name if not i.isdigit()])
+
+
+s = 'abc123'
+ret = remove_number_from_str(s)
+print(ret)
+
+if (r:=remove_number_from_str(s)) != 'aaa':
+    print(r)
