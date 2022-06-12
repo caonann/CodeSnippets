@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+import os
 
 csv_file_name='testfile.txt'
 with open(csv_file_name, 'a+') as f:
@@ -15,3 +16,10 @@ int main(){
 }
     '''
     f.write(content)
+
+
+file_path='/user/local/file.txt'
+path , fullflname = os.path.split(file_path)
+fname, ext = os.path.splitext(fullflname)
+
+print(f"{path=} {fullflname=} {fname=} {ext=}")

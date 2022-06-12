@@ -4,6 +4,7 @@
 dict_test={"abc":123}
 for i in range(3):
     dict_test.setdefault("arry",[5]).append(i)
+print(f"{i=}")
 print(dict_test)
 
 conf=[{
@@ -68,3 +69,7 @@ _ = ','.join(["ababab",'kkkk'])
 print(_)
 _ = ','.join([])
 print(_)
+
+for i in range(1,4):
+    print(i)
+print(f"{i=}")
