@@ -1,3 +1,3 @@
-[submodule "question_collating"]
-	path = question_collating
-	url = https://github.com/caonann/question_collating.git
+[submodule "private"]
+	path = private
+	url = https://github.com/caonann/language_private.git
