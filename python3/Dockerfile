@@ -5,7 +5,7 @@ ENV NOTE_BOOK_DIR=./notebooks
 
 RUN conda install -c conda-forge mamba && \
     mamba install jupyter -y --quiet && \
-    pip install pillow -y
+    pip install pillow 
 
 CMD jupyter notebook \
     --notebook-dir=${NOTE_BOOK_DIR} --ip='*' --port=${JUPYTER_PORT} \

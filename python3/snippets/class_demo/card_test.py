@@ -27,3 +27,15 @@ print(deck[-1])
 print(deck[:3])
 print(choice(deck))
 print(deck[12::13])
+
+# 排序卡牌
+suit_values = dict(spades=3, hearts=2, diaomonds=1, clubs=0)
+
+
+def spades_high(card: Card) -> int:
+    return FrenchDeck.ranks.index(card.rank) * len(suit_values) + suit_values[card.suit]
+
+
+s = sorted(deck, key=spades_high)
+for card in s:
+    print(card)

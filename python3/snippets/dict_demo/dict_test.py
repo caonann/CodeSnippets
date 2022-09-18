@@ -74,3 +74,13 @@ if dic1 == dic2:
 dic2.update({"c": "c"})
 if dic1 == dic2:
     print("after dic1 == dic2")
+
+dic_loop = {"1": "aaa", "0": "bbb", "c": "ccc"}
+print(list(dic_loop.items()))
+for a, b in list(dic_loop.items()):
+    print(f"{a=},{b=}")
+
+dic_loop.update({"d": "dddd"})
+
+for key, value in dic_loop.items():
+    print(f"{key=} {value=}")
