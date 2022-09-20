@@ -1,4 +1,5 @@
 import base64
+from urllib.parse import quote
 
 ret = base64.b64encode(bytes("你好啊 abc", encoding="utf-8")).decode("utf-8")
 print(f"{ret=}")
@@ -18,3 +19,7 @@ print(_)
 
 # _ = base64.b64decode(bytes('b5pC656iL', encoding="utf-8"))
 # print(_)
+
+test_input = {"request_id": "sample2-111", "a": "a param", "b": str(1), "c": str(True)}
+q_string = "?" + "&".join(f"{quote(k)}={quote(v)}" for k, v in test_input.items())
+print(q_string)
