@@ -84,3 +84,5 @@ dic_loop.update({"d": "dddd"})
 
 for key, value in dic_loop.items():
     print(f"{key=} {value=}")
+
+
