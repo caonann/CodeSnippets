@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"simple/arrary"
 	"simple/function"
+	"simple/strings"
 	"simple/variable"
 )
 
@@ -28,7 +29,11 @@ func runArrs() {
 
 func runFunctions() {
 	ret := function.Fibonacci(5)
-	fmt.Printf("fibonacci %v iter %v", ret, function.IterationTimes)
+	fmt.Printf("fibonacci %v iter %v\n", ret, function.IterationTimes)
+}
+
+func runStrings() {
+	strings.TestStringSplit()
 }
 func main() {
 	flag.Parse()
@@ -37,5 +42,5 @@ func main() {
 	runVariableFuns()
 	runArrs()
 	runFunctions()
-
+	runStrings()
 }
