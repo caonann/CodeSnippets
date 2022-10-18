@@ -9,7 +9,7 @@ func init() {
 	fmt.Println("#####init variable############")
 }
 
-//TestVariable ...
+// TestVariable ...
 func TestVariable() {
 	fmt.Println("TestVariable")
 	x := 1
@@ -19,7 +19,7 @@ func TestVariable() {
 
 }
 
-//TestInt ...
+// TestInt ...
 func TestInt() {
 	var num1 uint8 = 3 << 0
 	var num2 uint8 = 3 << 1
@@ -53,4 +53,11 @@ func TestPtr() {
 	t := []int{1, 2, 3, 4}
 	pt := &t
 	fmt.Printf("pt len %v", len(*pt))
+}
+
+func TestLife() {
+	var num int = 0
+	//变量只有在等号右边出现过才算使用过
+	num2 := num
+	fmt.Println(num2)
 }
