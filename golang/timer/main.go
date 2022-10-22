@@ -40,6 +40,6 @@ func main() {
 
 		}
 	}(ticker1)
-	time.Sleep(30 * time.Second)
+	time.Sleep(10 * time.Second)
 	fmt.Println("ok")
 }
