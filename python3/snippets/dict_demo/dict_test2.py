@@ -1,3 +1,4 @@
+import collections
 import random
 
 # 世界人口数量前10位国家的电话区号
@@ -35,4 +36,5 @@ for d1_key, d2_key in zip(d1.keys(), source_keys):
     if d1_key != d2_key:
         print(f"{d1_key=} != {d2_key=}")
 
-
+arg = collections.namedtuple("args", ["vidfile", "mode"])
+arg.vidfile
