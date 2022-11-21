@@ -23,13 +23,16 @@ void func_ptr(){
   auto ptr = std::make_shared<A>();
   cout << "use count" << ptr.use_count() << endl;
 
-  // vas.push_back(ptr);
+  //vas.push_back(ptr);
   vas.emplace_back(ptr);
-  auto t= std::thread([ptr]{
+  auto t= std::thread([&ptr]{
     //ptr->show();
+    printf("thread use count %ld\n",ptr.use_count());
   });
-  //t.join();
+  t.join();
+
   cout << "use count" << ptr.use_count() << endl;
+  cout << "use count vas" << vas[0].use_count() << endl;
 }
 
 int main() {
