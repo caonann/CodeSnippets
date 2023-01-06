@@ -25,8 +25,9 @@ void func_ptr(){
 
   //vas.push_back(ptr);
   vas.emplace_back(ptr);
-  auto t= std::thread([&ptr]{
+  auto t= std::thread([&ptr]{//要传拷贝
     //ptr->show();
+    
     printf("thread use count %ld\n",ptr.use_count());
   });
   t.join();
