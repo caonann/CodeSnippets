@@ -14,3 +14,4 @@ RUN apt-get clean all && apt-get update && \
     rm -rf /var/cache/apt/archives/*
     
 WORKDIR /app
+ENTRYPOINT ["g++"]

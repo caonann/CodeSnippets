@@ -44,8 +44,7 @@ void sample_demo() {
 
   auto end = system_clock::now();
   auto duration = duration_cast<microseconds>(end - start);
-  auto cost =
-      double(duration.count()) * microseconds::period::num / microseconds::period::den;  //纳秒
+  auto cost = double(duration.count()) * microseconds::period::num / microseconds::period::den;  // 纳秒
   // milliseconds毫秒用这个
   cout << "花费了" << cost << "秒" << endl;
   printf("%lf s\n", cost);
@@ -64,7 +63,7 @@ void test_cost() {
   }
 
   auto c = TimeCount("3");
-  sleep(0.1);
+  sleep(1);
   c.SinceBegin();
 }
 int main() {

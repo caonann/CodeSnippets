@@ -11,7 +11,7 @@ class A {
 };
 
 int main() {
-  A *a;
+  A *a;//不同编译器的版本可能行为不通，所以初始化判空是个好习惯
   if (a) {
     cout << "a is not null!" << a << endl;
   }
