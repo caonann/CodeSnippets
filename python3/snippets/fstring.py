@@ -33,3 +33,4 @@ print(ret)
 
 if (r := remove_number_from_str(s)) != "aaa":
     print(r)
+
