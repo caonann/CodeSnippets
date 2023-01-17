@@ -23,5 +23,7 @@ def create_virtual_point(path_str, value):
 if __name__ == "__main__":
     res = create_virtual_point("a.b.c", {"aaa": 123, "bbb": "bbb", "cccc": True})
     print(res)
-    res = create_virtual_point("a.0.c.9", "list")
+    res = create_virtual_point("a.0.c.11.9", "list")
+    print(res)
+    res = create_virtual_point("a.b.c", {"a":{"b":{"c":"dddd"}}})
     print(res)

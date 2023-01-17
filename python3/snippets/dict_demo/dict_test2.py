@@ -36,12 +36,13 @@ for d1_key, d2_key in zip(d1.keys(), source_keys):
     if d1_key != d2_key:
         print(f"{d1_key=} != {d2_key=}")
 
-arg = collections.namedtuple("args", ["vidfile", "mode"])
-args = arg(vidfile="aaa", mode=1)
+arg = collections.namedtuple("args", ["vidfile", "mode","kkk"])
+args = arg(vidfile="aaa", mode=1,kkk="kk")
 print(args._asdict())
 print(args.vidfile)
 # print(args["vidfile"]) not vaild
-
+print(list(arg._fields))
 
 def func(args: arg):
     args.vidfile  # ide是能自动联想的
+
