@@ -13,4 +13,4 @@ pkg
 *.tar.gz*
 *.tgz
 *.txt
-
+.cache
