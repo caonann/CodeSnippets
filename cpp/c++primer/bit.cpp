@@ -7,14 +7,14 @@
 using namespace std;
 
 // big-endian and little-endian
-//判断机器的字节序
+// 判断机器的字节序
 bool isLittleEndian() {
   union {
     int a;
     char b;
   } c;
   c.a = 1;
-  return c.b == 1;  //联合体union的存放顺序是所有成员都从低地址开始存放
+  return c.b == 1;  // 联合体union的存放顺序是所有成员都从低地址开始存放
 }
 
 bool isLittleEndian2() {
@@ -32,12 +32,12 @@ class C {
   int a;
   char b;
   int c;
-  static const int d{0};  //静态常量成员可以类内初始化
+  static const int d{0};  // 静态常量成员可以类内初始化
   static constexpr int e{0};
   static int f;
 };
 
-int C::f = 0;  //静态成员变量的定义需要在类外定义，为了保证编译时类成员的定义只存在于一个目标文件中
+int C::f = 0;  // 静态成员变量的定义需要在类外定义，为了保证编译时类成员的定义只存在于一个目标文件中
 
 int main() {
   /*
@@ -60,7 +60,7 @@ int main() {
   int a = 2;
   unsigned int i = 8;
   printf("var a addr:%p\n", &a);
-  printf("var i addr:%p\n", &i);  //栈上变量，地址从低到高排布
+  printf("var i addr:%p\n", &i);  // 栈上变量，地址从低到高排布
   int arr[] = {1, 2, 3, 4, 5};
   for (auto &i : arr) {
     printf("arr addr %p\n", &i);
@@ -114,7 +114,7 @@ int main() {
   cout << "c::d size is " << sizeof(C::d) << endl;
   cout << "c::f size is " << sizeof(C::f) << endl;
 
-  //左移动7位
+  // 左移动7位
   int n = 1 << 7;
   cout << "left offset 7 bit: " << n << endl;
   n = n << 1;

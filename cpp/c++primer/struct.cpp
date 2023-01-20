@@ -1,17 +1,17 @@
-#include <iostream>
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
-struct Foo{};
+struct Foo {};
 
-void test_func(){
-    struct Foo2{
-        int a;
-    };
-    Foo2 f;
+void test_func() {
+  struct Foo2 {
+    int a;
+  };
+  Foo2 f;
 }
-int main(){
-    test_func();
-    return 0;
+int main() {
+  test_func();
+  return 0;
 }

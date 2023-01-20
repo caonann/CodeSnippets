@@ -1,10 +1,7 @@
-#include <iostream>
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
 
-int main(){
-  
-    return 0;
-}
+int main() { return 0; }

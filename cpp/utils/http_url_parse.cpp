@@ -1,19 +1,19 @@
 //
 // Created by cn on 2022/11/21.
 //
-#include <sstream>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include <tuple>
 
-using namespace  std;
+using namespace std;
 std::tuple<std::map<std::string, std::string>, int> ParseUrl(const std::string& param) {
   std::istringstream iss(param);
   std::map<std::string, std::string> params;
   std::string url;
   if (!std::getline(iss, url, '?'))  // remove the URL part
   {
-    cout<<"parsing url faield "<< param<<endl;
+    cout << "parsing url faield " << param << endl;
     return std::make_tuple(params, -11);
   }
   std::string keyval;
@@ -32,14 +32,14 @@ std::tuple<std::map<std::string, std::string>, int> ParseUrl(const std::string& 
   return std::make_tuple(params, !params.empty() ? 0 : -12);
 }
 
-int main(){
-  std::string params="?cloudgsid=cap-123&upstream=rtc";
-  auto [param,retcode]=ParseUrl(params);
-  if(retcode!=0){
-    cout<<"retcode is not 0"<<endl;
-  }else{
-    for(const auto&v:param){
-      cout<<v.first<<"="<<v.second<<endl;
+int main() {
+  std::string params = "?cloudgsid=cap-123&upstream=rtc";
+  auto [param, retcode] = ParseUrl(params);
+  if (retcode != 0) {
+    cout << "retcode is not 0" << endl;
+  } else {
+    for (const auto& v : param) {
+      cout << v.first << "=" << v.second << endl;
     }
   }
   return 0;

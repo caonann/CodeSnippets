@@ -16,8 +16,7 @@ char *interface2ip(char *infName) {
   static char infIP[16];
   getifaddrs(&ifAddrStruct);
   while (ifAddrStruct != NULL) {
-    if (ifAddrStruct->ifa_addr->sa_family == AF_INET &&
-        0 == strcmp(ifAddrStruct->ifa_name, infName)) {
+    if (ifAddrStruct->ifa_addr->sa_family == AF_INET && 0 == strcmp(ifAddrStruct->ifa_name, infName)) {
       tmpAddrPtr = &((struct sockaddr_in *)ifAddrStruct->ifa_addr)->sin_addr;
       inet_ntop(AF_INET, tmpAddrPtr, ip, INET_ADDRSTRLEN);
       // printf("eth0 ip :%s\n",ip);

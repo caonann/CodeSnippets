@@ -27,8 +27,8 @@ int main() {
   func_test1("aaa", k);
   cout << k << endl;
   std::string pic_bin;
-  readToFile("/data/workspace/aidhpaas/live_adaptor_cplus/live/aidh/test/ffmpeg-demo/logo.png",
-             pic_bin, std::ifstream::binary);
+  readToFile("/data/workspace/aidhpaas/live_adaptor_cplus/live/aidh/test/ffmpeg-demo/logo.png", pic_bin,
+             std::ifstream::binary);
   printf("pic len %d\n", pic_bin.length());
   size_t a = 1;
   auto aa = a - 4096;

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "testlib/testlib.hpp"
-#include "testlib2/testlib2.hpp"
+#include "testlib.hpp"
+#include "testlib2.hpp"
 
 int main() {
   int a = 10;
