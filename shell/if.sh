@@ -26,7 +26,7 @@ fi
 [ 1 -eq 2 ] || echo "firsh block";echo "second block"
 
 #子shell，退出不能真正运行
-[ 1 -eq 1 ] || (echo "firsh blocka";echo "second blocka";exit 1) 
+[[ 1 -eq 1 ]] || (echo "firsh blocka";echo "second blocka";exit 1) 
 
 echo "hello"
 

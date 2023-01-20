@@ -9,10 +9,10 @@ function sysmon_main() {
 
     for i in $RAWIN
     do
-        PID=$(echo $i | cut -d: -f1)
-        OWNER=$(echo $i | cut -d: -f2)
-        COMMAND=$(echo $i | cut -d: -f3)
-        MEMORY=$(pmap $PID | tail -n 1 | awk '/[0-9]K/{print $2}')
+        PID=$(echo "$i" | cut -d: -f1)
+        OWNER=$(echo "$i" | cut -d: -f2)
+        COMMAND=$(echo "$i"| cut -d: -f3)
+        MEMORY=$(pmap "$PID" | tail -n 1 | awk '/[0-9]K/{print $2}')
         
         printf "%-10s%-15s%-15s%s\n" "$PID" "$OWNER" "$MEMORY" "$COMMAND"
     done
