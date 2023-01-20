@@ -12,5 +12,4 @@ pkg
 *.jpeg
 *.tar.gz*
 *.tgz
-*.txt
 .cache
