@@ -114,3 +114,7 @@ print(f(2))
 print(f(3))
 
 print(locals())
+
+
+if a:= "aaa" if True else None:
+    print(a)
