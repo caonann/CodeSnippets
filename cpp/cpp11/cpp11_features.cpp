@@ -7,6 +7,7 @@
 #include <map>
 #include <memory>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 using namespace std;
@@ -31,22 +32,21 @@ struct {
 
 class CQuickInit {
  public:
-  CQuickInit() {}
-  CQuickInit(int a, const std::string& b) : m_a(a), m_str(b) {}
-  void show() {
+  CQuickInit() = default;
+  CQuickInit(int a, std::string b) : m_a(a), m_str(std::move(b)) {}
+  void show() const {
     cout << m_a << endl;
     cout << m_str << endl;
-    cout << m_gb << endl;
+    cout << m_gb_ << endl;
   }
 
- public:
   int m_a = 1;
   std::string m_str = "default str";
-  static int m_gb;
-  const static int m_kgb = 1;
+  static int m_gb_;
+  const static int kMKgb = 1;
 };
 
-int CQuickInit::m_gb = 0;
+int CQuickInit::m_gb_ = 0;
 
 void print_struct() { cout << b.a << endl; }
 
@@ -56,7 +56,7 @@ void quick_init() {
 
   CQuickInit q2(3, "init list");
   q2.show();
-  q2.m_gb++;
+  q2.m_gb_++;
   q1.show();
 }
 
