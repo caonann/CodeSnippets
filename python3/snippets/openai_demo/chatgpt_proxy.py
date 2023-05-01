@@ -1,10 +1,10 @@
 import requests
-PROXY_DOMAIN=""
+PROXY_DOMAIN="api.openai.com"
 #等效于openai.ChatCompletion.create(**kwargs)
 def proxy_chat_completion(openai_key,**kwargs):
     stream = kwargs.get("stream", False)
     r = requests.post(
-        f"http://{PROXY_DOMAIN}/v1/chat/completions",
+        f"https://{PROXY_DOMAIN}/v1/chat/completions",
         headers={
             "Content-Type": "application/json",
             "Authorization": f"Bearer {openai_key}",
@@ -22,7 +22,7 @@ def proxy_chat_completion(openai_key,**kwargs):
 def proxy_completion(openai_key,**kwargs):
     stream = kwargs.get("stream", False)
     r = requests.post(
-        f"http://{PROXY_DOMAIN}/v1/completions",
+        f"https://{PROXY_DOMAIN}/v1/completions",
         headers={
             "Content-Type": "application/json",
             "Authorization": f"Bearer {openai_key}",
@@ -44,7 +44,7 @@ class TestCompletion(unittest.TestCase):
         api_key = os.getenv("OPENAI_API_KEY")
         input={
             "stream": True,
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-3.5-turbo1",
             "messages": [{"role": "user", "content": "请例句唐诗三百首"}],
         }
         r = proxy_chat_completion(api_key,**input)

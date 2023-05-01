@@ -20,4 +20,4 @@ result = container.exec_run(
 # 获取返回结果
 print(result)
 output = result.output.decode("utf-8")
-print(output)
+print(output, type(output))
