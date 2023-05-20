@@ -13,12 +13,10 @@ headers = {
 
 json_data = {
     "model": "text-davinci-003",
-    "prompt": "Say this is a test",
-    "max_tokens": 7,
-    "temperature": 0,
+    "prompt": "唐诗三百首",
+    "max_tokens": 700,
+    #"temperature": 1,
 }
 
-r = requests.post(
-    "https://api.openai.com/v1/completions", headers=headers, json=json_data
-)
-print(json.dumps(r.json()))
+r = requests.post("https://api.openai.com/v1/completions", headers=headers, json=json_data)
+print(json.dumps(r.json(), ensure_ascii=False, indent=4))

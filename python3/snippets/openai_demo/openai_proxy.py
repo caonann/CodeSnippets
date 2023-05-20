@@ -14,7 +14,7 @@ completion = openai.ChatCompletion.create(
     # engine="gpt-35-turbo-0301",
     model="gpt-3.5-turbo",
     messages=[{"role": "user", "content": "Hello!"}],
-    stream=True,
+    stream=False,
 )
 
 # print(completion.choices[0].message)
