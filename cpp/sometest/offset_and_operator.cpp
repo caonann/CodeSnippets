@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-#include "../timestamp/timestamp.h"
+#include "timestamp/timestamp.h"
 using namespace muduo;
 
 static const int knumber = 10000 * 10000;

@@ -6,4 +6,4 @@ def test_func():
 if __name__ == "__main__":
     a = test_func
     # a.test_func_sub()
-    外层函数无法直接调用内层函数
+    # 外层函数无法直接调用内层函数

@@ -1,20 +1,19 @@
-#include <assert.h>
-#include <stdio.h>
+#include <cassert>
+#include <cstdio>
 #include <iostream>
 
-using namespace std;
 int get_size(int n) {
   int sum = 10 * n;
   return sum;
 }
 int main() {
   unsigned arr_len = 10;  // 非常量表达式为什么也能编译通过？
-  string strArr[arr_len];
+  std::string str_arr[arr_len];
   // constexpr unsigned sz = 20;
   // string strArr2[sz];
-  string strArr3[get_size(2)];
+  std::string str_arr3[get_size(2)];
   for (int i = 0; i < get_size(2); i++) {
-    cout << strArr3[i] << endl;
+    std::cout << str_arr3[i] << std::endl;
   }
   return 0;
 }
