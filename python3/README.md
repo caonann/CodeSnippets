@@ -4,5 +4,5 @@ docker build -t pythonuint .
 ```
 # 启动容器
 ```
-sh run_docker.sh
+sh run.sh
 ```

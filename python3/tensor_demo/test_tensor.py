@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+import numpy as np
 import torch
 from memory_profiler import profile
 
@@ -46,6 +47,18 @@ def test_tensor_func():
         output = deal(output)
 
 
+def tensor_data():
+    data = [[1, 2],[3, 4],[5,5]]
+    x_data = torch.tensor(data)
+    np_array = np.array(data)
+    x_np = torch.from_numpy(np_array)
+    x_ones = torch.ones_like(x_data) # retains the properties of x_data
+    print(f"Ones Tensor: \n {x_ones} \n")
+    zeros = torch.zeros_like(x_data)
+    print(f"Zeros Tensor: \n {zeros} \n")
+    x_rand = torch.rand_like(x_data, dtype=torch.float) # overrides the datatype of x_data
+    print(f"Random Tensor: \n {x_rand} \n")
+    
 if __name__ == "__main__":
     # a = test_tensor()
     # b = test_tensor_cat()
@@ -54,4 +67,6 @@ if __name__ == "__main__":
     # 判断a和b形状是否相等
     # print(a.shape == b.shape)
 
-    test_tensor_func()
+    # test_tensor_func()
+    
+    tensor_data()
