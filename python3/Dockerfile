@@ -2,7 +2,7 @@ FROM nvcr.io/nvidia/cuda:11.8.0-devel-ubuntu20.04
 
 # 设置环境变量
 ENV JUPYTER_PORT=8888 \
-    NOTE_BOOK_DIR=/notebooks \
+    NOTE_BOOK_DIR=/app/notebooks \
     MINICONDA_VERSION=latest \
     CONDA_DIR=/opt/miniconda3
 
@@ -27,6 +27,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Lin
     /tmp/miniconda.sh -b -p ${CONDA_DIR} && \
     rm /tmp/miniconda.sh && \
     ${CONDA_DIR}/bin/conda install -y python=3.10 jupyter -c conda-forge --quiet && \
+    ${CONDA_DIR}/bin/conda install -y pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia && \
     ${CONDA_DIR}/bin/conda clean -afy
 
 # 设置环境变量以包括 conda 在 PATH 中
