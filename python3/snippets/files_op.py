@@ -31,7 +31,7 @@ print(f"{dirname=}")
 from pathlib import Path
 
 path = Path(__file__)
-print(path.parent.absolute())
+print("path.parent.absolute()", path.parent.absolute())
 normalpath = os.path.normpath(__file__)
 afternormal = os.path.dirname(normalpath)
 print(afternormal)

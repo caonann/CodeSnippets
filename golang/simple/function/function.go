@@ -11,3 +11,9 @@ func Fibonacci(n int) int {
 	IterationTimes++
 	return Fibonacci(n-1) + Fibonacci(n-2)
 }
+
+
+func AssianValue()*int {
+	var a int
+	return &a
+}
