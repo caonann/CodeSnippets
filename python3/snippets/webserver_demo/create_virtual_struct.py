@@ -26,4 +26,5 @@ if __name__ == "__main__":
     res = create_virtual_point("a.0.c.11.9", "list")
     print(res)
     res = create_virtual_point("a.b.c", {"a":{"b":{"c":"dddd"}}})
+    
     print(res)
