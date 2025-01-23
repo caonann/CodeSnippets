@@ -1,7 +1,7 @@
 import argparse
 
 if __name__ == "__main__":
-    ### https://docs.python.org/zh-cn/3/library/argparse.html#metavar
+    # https://docs.python.org/zh-cn/3/library/argparse.html#metavar
     parser = argparse.ArgumentParser(description="Process some integers.")
     """
     type可以为 str,int,list, str, tuple, set, dict等
@@ -25,7 +25,9 @@ if __name__ == "__main__":
         required=True,  # 是否为必填选项
         help="verbose information",
     )
-    parser.add_argument("-b", action="store_true", help="if defined ")  # 如果定义了，默认就为true
+    parser.add_argument(
+        "-b", action="store_true", help="if defined "
+    )  # 如果定义了，默认就为true
 
     # 范围内可选参数值
     parser.add_argument(

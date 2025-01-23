@@ -3,6 +3,7 @@
 
 print("hello world")
 
+
 # *args **kwargs 用法区别
 def test_args(*args):
     for arg in args:
